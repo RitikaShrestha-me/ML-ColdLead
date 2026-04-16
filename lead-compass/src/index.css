@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 25% 97%;
+    --foreground: 220 40% 13%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 40% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 40% 13%;
+
+    --primary: 210 100% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 92%;
+    --secondary-foreground: 220 40% 13%;
+
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 168 80% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 210 100% 45%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 220 30% 15%;
+    --sidebar-foreground: 220 10% 85%;
+    --sidebar-primary: 210 100% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 25% 22%;
+    --sidebar-accent-foreground: 220 10% 85%;
+    --sidebar-border: 220 20% 25%;
+    --sidebar-ring: 210 100% 55%;
+
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --navy: 220 40% 13%;
+    --navy-light: 220 30% 20%;
+    --teal: 168 80% 40%;
+    --teal-light: 168 60% 90%;
+    --gradient-hero: linear-gradient(135deg, hsl(220 40% 13%), hsl(220 30% 20%), hsl(210 60% 25%));
+    --gradient-accent: linear-gradient(135deg, hsl(210 100% 45%), hsl(168 80% 40%));
+    --gradient-success: linear-gradient(135deg, hsl(152 60% 42%), hsl(168 80% 40%));
+    --gradient-danger: linear-gradient(135deg, hsl(0 72% 51%), hsl(20 80% 55%));
+    --shadow-card: 0 1px 3px 0 hsl(220 40% 13% / 0.06), 0 1px 2px -1px hsl(220 40% 13% / 0.06);
+    --shadow-elevated: 0 10px 25px -5px hsl(220 40% 13% / 0.1), 0 8px 10px -6px hsl(220 40% 13% / 0.06);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+  .gradient-danger {
+    background: var(--gradient-danger);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+}

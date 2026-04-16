@@ -1,0 +1,10 @@
+pandas
+numpy
+scikit-learn==1.8.0
+flask
+matplotlib
+seaborn
+flask_cors
+joblib
+catboost
+category_encoders
