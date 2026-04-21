@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Target, AlertCircle } from "lucide-react";
+import { Sparkles, Target, AlertCircle, Users, TrendingUp } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LeadForm, { type LeadData } from "@/components/LeadForm";
 import PredictionOutput from "@/components/PredictionOutput";
 import WelcomeScreen from "@/components/WelcomeScreen";
+import LeadScoringTable from "@/components/LeadScoringTable";
 import { predictAPI } from "@/lib/predict";
 import { toast } from "sonner";
 
@@ -54,7 +56,7 @@ export default function Index() {
 	return (
 		<div className="min-h-screen bg-background">
 			<header className="gradient-hero text-primary-foreground">
-				<div className="container max-w-3xl mx-auto px-4 py-12 md:py-16">
+				<div className="container max-w-3xl mx-auto px-4 py-8 md:py-10">
 					<div className="flex items-center gap-3 mb-3">
 						<div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/20 backdrop-blur-sm">
 							<Target className="h-5 w-5 text-accent" />
@@ -73,28 +75,47 @@ export default function Index() {
 				</div>
 			</header>
 
-			<main className="container max-w-3xl mx-auto px-4 -mt-6 pb-16">
-				<div className="space-y-5">
-					<LeadForm data={lead} onChange={(d) => setLead(d)} />
+			<main className="container max-w-3xl mx-auto px-4 -mt-4 pb-16">
+				<Tabs defaultValue="predict" className="space-y-4">
+					<TabsList className="grid w-full grid-cols-2">
+						<TabsTrigger value="predict" className="flex items-center gap-2">
+							<Target className="h-4 w-4" />
+							Single Lead Prediction
+						</TabsTrigger>
+						<TabsTrigger value="prospecting" className="flex items-center gap-2">
+							<Users className="h-4 w-4" />
+							Prospecting Accounts
+						</TabsTrigger>
+					</TabsList>
 
-					<Button
-						onClick={handlePredict}
-						size="lg"
-						className="w-full text-base font-bold h-13 gradient-accent text-accent-foreground hover:opacity-90 transition-opacity shadow-elevated"
-						disabled={isLoading}
-					>
-						{isLoading ? (
-							<span className="flex items-center gap-2">
-								<span className="animate-spin">⏳</span> Processing...
-							</span>
-						) : (
-							<>
-								<Sparkles className="h-5 w-5 mr-2" />
-								Predict Conversion
-							</>
-						)}
-					</Button>
-				</div>
+					<TabsContent value="predict" className="space-y-5 mt-4">
+						<div className="space-y-5">
+							<LeadForm data={lead} onChange={(d) => setLead(d)} />
+
+							<Button
+								onClick={handlePredict}
+								size="lg"
+								className="w-full text-base font-bold h-13 gradient-accent text-accent-foreground hover:opacity-90 transition-opacity shadow-elevated"
+								disabled={isLoading}
+							>
+								{isLoading ? (
+									<span className="flex items-center gap-2">
+										<span className="animate-spin">⏳</span> Processing...
+									</span>
+								) : (
+									<>
+										<Sparkles className="h-5 w-5 mr-2" />
+										Predict Conversion
+									</>
+								)}
+							</Button>
+						</div>
+					</TabsContent>
+
+					<TabsContent value="prospecting" className="mt-4">
+						<LeadScoringTable />
+					</TabsContent>
+				</Tabs>
 			</main>
 
 			<Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
